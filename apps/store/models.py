@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from apps.category.models import Category
 
@@ -6,7 +7,7 @@ from apps.category.models import Category
 
 
 class Product(models.Model):
-    product_name = models.CharField("nombre", max_length=200, unique=True)
+    name = models.CharField("nombre", max_length=200, unique=True)
     slug = models.SlugField("identificador", max_length=255, unique=True)
     description = models.TextField("descripción", max_length=500, blank=True)
     price = models.IntegerField("precio")
@@ -29,9 +30,12 @@ class Product(models.Model):
     # Nombre de la propiedad, por defecto es el nombre del método
     formatted_price.fget.short_description = 'precio'
 
-    def __str__(self):
-        return self.product_name
-
     class Meta:
         verbose_name = 'producto'
         verbose_name_plural = 'productos'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("store:product_detail", args=[self.category.slug, self.slug])

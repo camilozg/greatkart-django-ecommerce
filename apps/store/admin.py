@@ -7,14 +7,14 @@ from .models import Product
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'product_name',
+        'name',
         'formatted_price',
         'stock',
         'category',
         'modified_date',
         'is_available',
     )
-    prepopulated_fields = {'slug': ('product_name',)}
+    prepopulated_fields = {'slug': ('name',)}
 
 
 admin.site.register(Product, ProductAdmin)

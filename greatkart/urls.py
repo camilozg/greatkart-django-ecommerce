@@ -30,5 +30,6 @@ con la ruta MEDIA_URL.
 urlpatterns = [
     path('', include('apps.core.urls')),
     path('store/', include('apps.store.urls')),
+    path('cart/', include('apps.cart.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

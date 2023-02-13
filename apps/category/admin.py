@@ -6,10 +6,10 @@ from .models import Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category_name', 'slug')
+    list_display = ('name', 'slug')
 
     # Automcompleta campos del formulario
-    prepopulated_fields = {'slug': ('category_name',)}
+    prepopulated_fields = {'slug': ('name',)}
 
 
 admin.site.register(Category, CategoryAdmin)
