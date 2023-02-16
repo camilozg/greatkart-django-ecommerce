@@ -5,7 +5,7 @@
 {% block content %}
     <section class="section-pagetop bg">
         <div class="container">
-            <h2 class="title-page">Our Store</h2>
+            <h2 class="title-page">Nuestra tienda</h2>
         </div>
     </section>
     <section class="section-content padding-y">
@@ -17,14 +17,14 @@
                             <header class="card-header">
                                 <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
                                     <i class="icon-control fa fa-chevron-down"></i>
-                                    <h6 class="title">Categories</h6>
+                                    <h6 class="title">Categorías</h6>
                                 </a>
                             </header>
                             <div class="filter-content collapse show" id="collapse_1" style="">
                                 <div class="card-body">
                                     <ul class="list-menu">
                                         <li>
-                                            <a href={% url 'store:all_products' %}>All Products</a>
+                                            <a href={% url 'store:all_products' %}>Todos</a>
                                         </li>
                                         {% for category in categories %}
                                             <li>
@@ -40,7 +40,7 @@
                             <header class="card-header">
                                 <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
                                     <i class="icon-control fa fa-chevron-down"></i>
-                                    <h6 class="title">Sizes</h6>
+                                    <h6 class="title">Tallas</h6>
                                 </a>
                             </header>
                             <div class="filter-content collapse show" id="collapse_4" style="">
@@ -69,7 +69,7 @@
                             <header class="card-header">
                                 <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
                                     <i class="icon-control fa fa-chevron-down"></i>
-                                    <h6 class="title">Price range</h6>
+                                    <h6 class="title">Precio</h6>
                                 </a>
                             </header>
                             <div class="filter-content collapse show" id="collapse_3" style="">
@@ -130,7 +130,7 @@
                                         </div>
                                     </div>
                                     <!-- form-row.// -->
-                                    <button class="btn btn-block btn-primary">Apply</button>
+                                    <button class="btn btn-block btn-primary">Filtrar</button>
                                 </div>
                                 <!-- card-body.// -->
                             </div>
@@ -142,7 +142,7 @@
                 <main class="col-md-9">
                     <header class="border-bottom mb-4 pb-3">
                         <div class="form-inline">
-                            <span class="mr-md-auto"><b>{{ product_count }}</b> items found</span>
+                            <span class="mr-md-auto"><b>{{ product_count }}</b> productos</span>
                         </div>
                     </header>
                     <!-- sect-heading -->
@@ -152,7 +152,7 @@
                                 <figure class="card card-product-grid">
                                     <div class="img-wrap">
                                         <a href="{{ product.get_absolute_url }}">
-                                            <img src="{{ product.images.url }}">
+                                            <img src="{{ product.image.url }}">
                                         </a>
                                     </div>
                                     <figcaption class="info-wrap">
@@ -162,7 +162,7 @@
                                                 <span class="price">{{ product.formatted_price }}</span>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn btn-block btn-primary">Add to cart</a>
+                                        <a href="{{ product.get_absolute_url }}" class="btn btn-block btn-primary">Ver producto</a>
                                     </figcaption>
                                 </figure>
                             </div>
@@ -170,23 +170,21 @@
                     </div>
                     <!-- row end.// -->
                     <nav class="mt-4" aria-label="Page navigation sample">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">Previous</a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
+                        {% if products.has_other_pages %}
+                            <ul class="pagination">
+                                <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+                                    <a class="page-link" href="{% if products.has_previous %}?page={{ products.previous_page_number }}{% else %}#{% endif %}">Anterior</a>
+                                </li>
+                                {% for num_page in products.paginator.page_range %}
+                                    <li class="page-item {% if num_page == products.number %}active{% endif %}">
+                                        <a class="page-link" href="{% if num_page != products.number %}?page={{ num_page }}{% else %}#{% endif %}">{{ num_page }}</a>
+                                    </li>
+                                {% endfor %}
+                                <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+                                    <a class="page-link" href="{% if products.has_next %}?page={{ products.next_page_number }}{% else %}#{% endif %}">Siguiente</a>
+                                </li>
+                            </ul>
+                        {% endif %}
                     </nav>
                 </main>
                 <!-- col.// -->

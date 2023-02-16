@@ -11,7 +11,7 @@ class Product(models.Model):
     slug = models.SlugField("identificador", max_length=255, unique=True)
     description = models.TextField("descripción", max_length=500, blank=True)
     price = models.IntegerField("precio")
-    images = models.ImageField("fotos", upload_to='photos/products')
+    image = models.ImageField("fotos", upload_to='photos/products')
     stock = models.IntegerField("stock")
     is_available = models.BooleanField("disponibilidad", default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="categoría")
