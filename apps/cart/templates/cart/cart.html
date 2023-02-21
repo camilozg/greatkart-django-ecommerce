@@ -35,9 +35,12 @@
                                                     <figcaption class="info">
                                                         <a href="{{ item.product.get_absolute_url }}" class="title text-dark">{{ item.product.name }}</a>
                                                         <p class="text-muted small">
-                                                            Color: 25 Mpx
-                                                            <br>
-                                                            Size: Canon
+                                                            {% if item.variations.all %}
+                                                                {% for variation in item.variations.all %}
+                                                                    {{ variation.get_category_display | capfirst }}: {{ variation.value | capfirst }}
+                                                                    <br>
+                                                                {% endfor %}
+                                                            {% endif %}
                                                         </p>
                                                     </figcaption>
                                                 </figure>
@@ -46,31 +49,42 @@
                                                 <!-- col.// -->
                                                 <div class="col">
                                                     <div class="input-group input-spinner">
+                                                        <!-- Minus button -->
                                                         <div class="input-group-prepend">
-                                                            <a href="{% url 'cart:decrease_cart' item.product.id %}" class="btn btn-light" type="button" id="button-minus">
-                                                                <i class="fa fa-minus"></i>
-                                                            </a>
+                                                            <form action="{% url 'cart:substract_cart' item.product.id item.id %}" method="POST">
+                                                                {% csrf_token %}
+                                                                {% for variation in item.variations.all %}
+                                                                    <input type="hidden" name={{ variation.category | lower }} value={{ variation.value | lower }}>
+                                                                {% endfor %}
+                                                                <button type="submit" class="btn btn-light" id="button-minus">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                         <input type="text" class="form-control"  value="{{ item.quantity }}">
+                                                        <!--- Plus button -->
                                                         <div class="input-group-append">
-                                                            <a href="{% url 'cart:add_cart' item.product.id %}" class="btn btn-light" type="button" id="button-plus">
-                                                                <i class="fa fa-plus"></i>
-                                                            </a>
+                                                            <form action="{% url 'cart:add_cart_plus_button' item.product.id item.id %}" method="POST">
+                                                                {% csrf_token %}
+                                                                {% for variation in item.variations.all %}
+                                                                    <input type="hidden" name={{ variation.category | lower }} value={{ variation.value | lower }}>
+                                                                {% endfor %}
+                                                                <button type='submit' class="btn btn-light" id="button-plus">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                    <!-- input-group.// -->
                                                 </div>
-                                                <!-- col.// -->
                                             </td>
                                             <td>
                                                 <div class="price-wrap">
                                                     <var class="price">{{ item.total }}</var>
                                                     <small class="text-muted">{{ item.product.formatted_price }} C/U</small>
                                                 </div>
-                                                <!-- price-wrap .// -->
                                             </td>
                                             <td class="text-right">
-                                                <a href="{% url 'cart:remove_cart' item.product.id %}" class="btn btn-danger">Quitar</a>
+                                                <a href="{% url 'cart:remove_cart' item.product.id item.id %}" class="btn btn-danger">Quitar</a>
                                             </td>
                                         </tr>
                                     {% endfor %}

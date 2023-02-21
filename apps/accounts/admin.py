@@ -7,44 +7,69 @@ from .models import User
 
 
 class CustomUserAdmin(UserAdmin):
-    # Campos de lista
+    # add_form = CustomUserCreationForm
+    # form = CustomUserChangeForm
+    # model = User
+
+    # Configuración de elementos listados
     list_display = (
-        'email',
-        'username',
-        'first_name',
-        'last_name',
-        'phone_number',
-        'date_joined',
-        'last_login',
-        'is_admin',
-        'is_staff',
+        "email",
+        "is_staff",
+        "is_active",
     )
+    list_filter = (
+        "email",
+        "is_staff",
+        "is_active",
+    )
+    search_fields = ("email",)
+    ordering = ("email",)
 
-    # Campos con link al formulario de edición
-    list_display_links = ('email', 'username')
-
-    # Campos de solo lectura
-    readonly_fields = ('last_login', 'date_joined')
-
-    # Orden de la lista, para que sea descentente se agrega un - antes del nombre del campo
-    ordering = ('-date_joined',)
-
-    # Campos en los que se realiza una busqueda, por defecto busca en todos
-    search_fields = ('email', 'username', 'first_name', 'last_name')
-
-    # Filtro de fecha en la parte superior de la lista
-    # date_hierarchy = 'date_joined'
-
-    # Campos de formulario con división de secciones
+    # Configuración de campos en el formulario de actualización
     fieldsets = (
-        ('Account', {'fields': ('email', 'username', 'date_joined', 'last_login')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'phone_number')}),
-        ('Permissions', {'fields': ('is_admin', 'is_staff')}),
+        (
+            None,
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "email",
+                )
+            },
+        ),
+        (
+            "Permisos",
+            {
+                "fields": (
+                    "is_staff",
+                    "is_active",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                )
+            },
+        ),
     )
 
-    # Se deben sobreescribir estas variables cuando se hereda de UserAdmin
-    list_filter = ()  # Filtro a la derecha de la lista
-    filter_horizontal = ()  # Filtro de selección para campos ManyToManyField
+    # Configuración de campos en el formulario de creación
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": (
+                    "email",
+                    "password1",
+                    "password2",
+                    "is_staff",
+                    "is_active",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                ),
+            },
+        ),
+    )
 
 
 admin.site.register(User, CustomUserAdmin)

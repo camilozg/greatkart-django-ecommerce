@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <section class="section-content padding-y">
+        <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+            <article class="card-body">
+                <header class="mb-4">
+                    <h4 class="card-title">Registro</h4>
+                </header>
+                <form action ="{% url 'accounts:register' %}" method = "POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col form-group">
+                            {{ form.first_name.label }}
+                            {{ form.first_name }}
+                        </div>
+                        <div class="col form-group">
+                            {{ form.last_name.label }}
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col form-group">
+                            {{ form.email.label }}
+                            {{ form.email }}
+                        </div>
+                        <div class="col form-group">
+                            {{ form.phone_number.label }}
+                            {{ form.phone_number }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.password1.label }}
+                            {{ form.password1 }}
+                        </div>
+                        <!-- form-group end.// -->
+                        <div class="form-group col-md-6">
+                            {{ form.password2.label }}
+                            {{ form.password2 }}
+                        </div>
+                        <!-- form-group end.// -->
+                    </div>
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>
+                                            <strong>{{ field.label }}:</strong> {{ error }}
+                                        </li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+ 
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                    </div>
+                    <!-- form-group// -->
+                </form>
+            </article><!-- card-body.// -->
+        </div>
+        <!-- card .// -->
+        <p class="text-center mt-4">
+            Ya estás registrado? <a href="">Inicia sesión</a>
+        </p>
+        <br>
+        <br>
+    </section>
+
+{% endblock content %}

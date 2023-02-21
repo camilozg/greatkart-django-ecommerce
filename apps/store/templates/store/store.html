@@ -5,7 +5,11 @@
 {% block content %}
     <section class="section-pagetop bg">
         <div class="container">
-            <h2 class="title-page">Nuestra tienda</h2>
+            {% if 'search' in request.path and request.GET.keyword %}
+                <h2 class="title-page">Has Buscado "{{ request.GET.keyword }}"</h2>
+            {% else %}
+                <h2 class="title-page">Nuestros Productos</h2>
+            {% endif %}
         </div>
     </section>
     <section class="section-content padding-y">
@@ -142,7 +146,7 @@
                 <main class="col-md-9">
                     <header class="border-bottom mb-4 pb-3">
                         <div class="form-inline">
-                            <span class="mr-md-auto"><b>{{ product_count }}</b> productos</span>
+                            <span class="mr-md-auto"><b>{{ products|length  }}</b> productos</span>
                         </div>
                     </header>
                     <!-- sect-heading -->
@@ -170,18 +174,18 @@
                     </div>
                     <!-- row end.// -->
                     <nav class="mt-4" aria-label="Page navigation sample">
-                        {% if products.has_other_pages %}
+                        {% if page_obj.has_other_pages %}
                             <ul class="pagination">
-                                <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
-                                    <a class="page-link" href="{% if products.has_previous %}?page={{ products.previous_page_number }}{% else %}#{% endif %}">Anterior</a>
+                                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                                    <a class="page-link" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">Anterior</a>
                                 </li>
-                                {% for num_page in products.paginator.page_range %}
-                                    <li class="page-item {% if num_page == products.number %}active{% endif %}">
-                                        <a class="page-link" href="{% if num_page != products.number %}?page={{ num_page }}{% else %}#{% endif %}">{{ num_page }}</a>
+                                {% for num_page in page_obj.paginator.page_range %}
+                                    <li class="page-item {% if num_page == page_obj.number %}active{% endif %}">
+                                        <a class="page-link" href="{% if num_page != page_obj.number %}?page={{ num_page }}{% else %}#{% endif %}">{{ num_page }}</a>
                                     </li>
                                 {% endfor %}
-                                <li class="page-item {% if not products.has_next %}disabled{% endif %}">
-                                    <a class="page-link" href="{% if products.has_next %}?page={{ products.next_page_number }}{% else %}#{% endif %}">Siguiente</a>
+                                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                                    <a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">Siguiente</a>
                                 </li>
                             </ul>
                         {% endif %}

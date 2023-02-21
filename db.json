@@ -1,0 +1,267 @@
+[
+{
+  "model": "category.category",
+  "pk": 1,
+  "fields": {
+    "name": "Camisas",
+    "slug": "camisas",
+    "description": "Categoría de camisas",
+    "cat_image": "photos/categories/shirts.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 2,
+  "fields": {
+    "name": "Camisetas",
+    "slug": "camisetas",
+    "description": "Categoría de camisetas",
+    "cat_image": "photos/categories/tshirts.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 3,
+  "fields": {
+    "name": "Zapatos",
+    "slug": "zapatos",
+    "description": "Categoría de zapatos",
+    "cat_image": "photos/categories/shoes.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 4,
+  "fields": {
+    "name": "Chaquetas",
+    "slug": "chaquetas",
+    "description": "Categoría de chaquetas",
+    "cat_image": "photos/categories/jackets.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 5,
+  "fields": {
+    "name": "Jeans",
+    "slug": "jeans",
+    "description": "Categoría de jeans",
+    "cat_image": "photos/categories/jeans.jpg"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 1,
+  "fields": {
+    "name": "Jeans ATX",
+    "slug": "jeans-atx",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "price": 200000,
+    "image": "photos/products/ATX-Jeans.jpg",
+    "stock": 100,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2023-02-10T16:53:22.488Z",
+    "modified_date": "2023-02-10T16:53:22.488Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "name": "Camisa Wrangler",
+    "slug": "camisa-wrangler",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "price": 300000,
+    "image": "photos/products/Wrangler-Shirt.jpg",
+    "stock": 2000,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2023-02-10T17:17:21.409Z",
+    "modified_date": "2023-02-10T17:17:21.409Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "name": "Chaqueta Polo",
+    "slug": "chaqueta-polo",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "price": 500000,
+    "image": "photos/products/US-Polo-Assn_Jacket.jpg",
+    "stock": 300,
+    "is_available": true,
+    "category": 4,
+    "created_date": "2023-02-10T17:18:18.936Z",
+    "modified_date": "2023-02-10T17:18:18.936Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "name": "Tenis Puma Ferrari",
+    "slug": "tenis-puma-ferrari",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "price": 600000,
+    "image": "photos/products/Puma-Ferrari-Shoes.jpg",
+    "stock": 500,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2023-02-10T17:19:56.679Z",
+    "modified_date": "2023-02-10T17:19:56.679Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "name": "Jeans Mavi",
+    "slug": "jeans-mavi",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "price": 300000,
+    "image": "photos/products/Mavi_jeans.jpg",
+    "stock": 1000,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2023-02-10T17:20:37.753Z",
+    "modified_date": "2023-02-10T17:20:37.754Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 6,
+  "fields": {
+    "name": "Tenis Jordan Basketball",
+    "slug": "tenis-jordan-basketball",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "price": 700000,
+    "image": "photos/products/jordan-true-flight-basketball-shoes.jpg",
+    "stock": 500,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2023-02-10T17:21:55.937Z",
+    "modified_date": "2023-02-10T17:21:55.937Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 7,
+  "fields": {
+    "name": "Camiseta Great",
+    "slug": "camiseta-great",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+    "price": 80000,
+    "image": "photos/products/Great-Tshirt.jpg",
+    "stock": 0,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2023-02-10T17:22:41.777Z",
+    "modified_date": "2023-02-13T17:12:52.249Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 8,
+  "fields": {
+    "name": "Camisa RXN Azul",
+    "slug": "camisa-rxn-azul",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+    "price": 120000,
+    "image": "photos/products/Blue-Shirt.jpg",
+    "stock": 200,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2023-02-10T17:23:51.134Z",
+    "modified_date": "2023-02-10T17:23:51.134Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "category": "color",
+    "value": "Rojo",
+    "is_active": true,
+    "created_date": "2023-02-17T06:46:35.694Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "category": "color",
+    "value": "Azul",
+    "is_active": true,
+    "created_date": "2023-02-17T06:48:28.641Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "category": "color",
+    "value": "Verde",
+    "is_active": true,
+    "created_date": "2023-02-17T06:48:39.615Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 6,
+  "fields": {
+    "product": 1,
+    "category": "size",
+    "value": "M",
+    "is_active": true,
+    "created_date": "2023-02-17T16:19:13.690Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 7,
+  "fields": {
+    "product": 1,
+    "category": "size",
+    "value": "L",
+    "is_active": true,
+    "created_date": "2023-02-17T16:19:25.737Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 8,
+  "fields": {
+    "product": 1,
+    "category": "size",
+    "value": "S",
+    "is_active": true,
+    "created_date": "2023-02-18T23:14:56.099Z"
+  }
+},
+{
+  "model": "cart.cart",
+  "pk": 6,
+  "fields": {
+    "session_id": "dxu53ncolj4bjq4d7qle4cnekbnfwi3a",
+    "date_added": "2023-02-18"
+  }
+},
+{
+  "model": "cart.cartitem",
+  "pk": 57,
+  "fields": {
+    "product": 1,
+    "cart": 6,
+    "quantity": 2,
+    "is_active": true,
+    "variations": [
+      2
+    ]
+  }
+}
+]

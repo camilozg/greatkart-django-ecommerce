@@ -60,9 +60,9 @@
                 <!-- col.// -->
                 <a href="{% url 'store:all_products' %}" class="btn btn-outline-primary">Tienda</a>
                 <div class="col-lg  col-md-6 col-sm-12 col">
-                    <form action="#" class="search">
+                    <form action="{% url 'store:search' %}" class="search">
                         <div class="input-group w-100">
-                            <input type="text" class="form-control" style="width:60%;" placeholder="Buscar">
+                            <input type="text" class="form-control" style="width:60%;" placeholder="Buscar" name="keyword">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
                                     <i class="fa fa-search"></i>
@@ -78,8 +78,8 @@
                         <div class="widget-header">
                             <small class="title text-muted">Bienvenido!</small>
                             <div>
-                                <a href="./signin.html">Iniciar sesión</a> <span class="dark-transp">|</span>
-                                <a href="./register.html">Registrarse</a>
+                                <a href="{% url 'accounts:login' %}">Iniciar sesión</a> <span class="dark-transp">|</span>
+                                <a href="{% url 'accounts:register' %}">Registrarse</a>
                             </div>
                         </div>
                         <a href="{% url 'cart:cart' %}" class="widget-header pl-3 ml-3">
