@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g5gm$31fo!p#ct6fw13fq6&ftj6g8$l+58w$re0nu^reae1w*!'
+SECRET_KEY = "django-insecure-g5gm$31fo!p#ct6fw13fq6&ftj6g8$l+58w$re0nu^reae1w*!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,58 +31,58 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'apps.core',
-    'apps.category',
-    'apps.accounts',
-    'apps.store',
-    'apps.cart',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "apps.core",
+    "apps.category",
+    "apps.accounts",
+    "apps.store",
+    "apps.cart",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'greatkart.urls'
+ROOT_URLCONF = "greatkart.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'apps.category.context_processors.categories',
-                'apps.cart.context_processors.counter',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "apps.category.context_processors.categories",
+                "apps.cart.context_processors.counter",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'greatkart.wsgi.application'
+WSGI_APPLICATION = "greatkart.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -109,9 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = "es-co"
 
-TIME_ZONE = 'America/Bogota'
+TIME_ZONE = "America/Bogota"
 
 USE_I18N = True
 
@@ -121,23 +121,91 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static/'
+"""
+STATIC_URL: URL prefijo con la que se accederá a los archivos estáticos
+por ejemplo http://127.0.0.1:8000/static/images/banners/cover.jpg
+
+STATICFILES_DIRS: Rutas adicionales de archivos estáticos. Si se crea una carpeta
+con elementos estaticos afuera de las apps debemos especificar su ruta.
+
+STATIC_ROOT: Es donde se agrupan los archivos estáticos de las apps (app/static) y de los
+directorios STATICFILES_DIRS. Esto se realiza con el comando collectstatic y es importante
+para los despliegues a producción ya que cuando DEBUG = False solo se pueden leer archivos
+estáticos de esta ruta.
+"""
+
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "collectstatic"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Custom auth user
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = "accounts.User"
 
 # Media files
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media/"
 
 # Numbers configuration
 
 USE_THOUSAND_SEPARATOR = True
+
+# Django messages
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: "alert-danger",
+    messages.SUCCESS: "alert-success",
+}
+
+# SMTP configuration
+
+"""
+Para enviar correos con Django debemos de declarar la variable EMAIL_BACKEND que
+indica el backend que se usará para enviar los correos. Tenemos varias opciones:
+
+    File backend: Guarda los correos en el EMAIL_FILE_PATH configurado
+
+        EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+        EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
+
+    File backend: Envia correos con el protocolo SMTP
+
+        EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+    Console backend: Imprime los correos en la shell
+
+        EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+    In-memory backend: Almacena los mensajes en el atributo outbox del módulo django.core.mail.
+    Este atributo se crea cuando se envía el primer correo.
+
+        EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
+    Dummy backend: No hace nada con los correos. No es necesario especificar ninguna otra
+    configuración aparte de EMAIL_BACKEND.
+
+        EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+Para definir una configuración en ambientes de desarrollo se puede usar la variable
+DEBUG:
+
+    if DEBUG:
+        EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+        EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+        EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
+"""
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "camilozamora1@gmail.com"
+EMAIL_HOST_PASSWORD = "uuyddvjwidfbbjaz"  # Clave de aplicación generada por gmail
+EMAIL_USE_TLS = True

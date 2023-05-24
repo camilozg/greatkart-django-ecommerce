@@ -16,10 +16,13 @@ class CustomUserCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Podemos sobreescribir este método para realizar hacer modificaciones sobre todos los
-        campos del formulario. En este caso agregamos la clase 'form-control' y placeholders.
+        Podemos sobreescribir el método __init__ para hacer modificaciones en el formulario.
+        En este caso agregamos la clase 'form-control', los placeholders y eliminamos el
+        sufijo de dos puntos que traen los labels por defecto en Django.
         """
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+
+        self.label_suffix = ''  # Eliminamos el sufijo ':'
 
         self.error_messages['password_mismatch'] = 'Las contraseñas no coinciden.'
 
@@ -38,7 +41,7 @@ class CustomUserCreationForm(UserCreationForm):
 
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
-            self.fields[field].widget.attrs['placeholder'] = (
-                placeholders.get(field) or self.fields[field].widget.attrs['placeholder']
-            )
-            self.fields[field].label = labels.get(field) or self.fields[field].label
+            if field in placeholders:
+                self.fields[field].widget.attrs['placeholder'] = placeholders[field]
+            if field in labels:
+                self.fields[field].label = labels[field]

@@ -4,8 +4,12 @@ from django.db import models
 
 class CustomUserManager(BaseUserManager):
     """
-    Para crear un usuario customizado primero creamos un UserManager heredando de
-    BaseUserManager y sobreescribimos los métodos create_user y create_superuser.
+    Para definir el modelo de un usuario customizado primero creamos un UserManager
+    heredando de BaseUserManager y sobreescribimos los métodos create_user y
+    create_superuser. Estos métodos solo se ejecutan al crear un super usuario en la
+    terminal o al llamar alguno de los métodos explicitamente. Si queremos realizar
+    una acción siempre que se guarde un usuario, ya sea con create_user(), create_superuser()
+    o con save() podemos usar los signals que nos permiten ejecutar acciones pre o post guardado.
     """
 
     def create_user(self, email, password, **extra_fields):
@@ -30,6 +34,7 @@ class CustomUserManager(BaseUserManager):
             password=password,
             **extra_fields,
         )
+        # user.is_admin = True
         user.is_staff = True
         user.is_superuser = True
         user.is_active = True
@@ -76,6 +81,22 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    def __init__(self, *args, **kwargs):
+        """
+        Podemos sobreescribir los atributos de los campos por defecto. el valor de is_active
+        también lo podriamos cambiar con un signal pre_save para modificar lsu valor antes
+        de guardar un usuario.
+        """
+        super(User, self).__init__(*args, **kwargs)
+        self._meta.get_field('is_staff').verbose_name = 'es admin'
+        self._meta.get_field('is_active').default = False
+
+
+# @receiver(pre_save, sender=User)
+# def set_new_user_inactive(sender, instance, **kwargs):
+#     if instance.is_superuser is False:
+#         instance.is_active = False
 
 
 # class User(AbstractBaseUser, PermissionsMixin):

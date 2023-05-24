@@ -14,13 +14,15 @@ class CustomUserAdmin(UserAdmin):
     # Configuración de elementos listados
     list_display = (
         "email",
-        "is_staff",
         "is_active",
+        "is_staff",
+        "is_superuser",
     )
     list_filter = (
         "email",
-        "is_staff",
         "is_active",
+        "is_staff",
+        "is_superuser",
     )
     search_fields = ("email",)
     ordering = ("email",)
@@ -41,8 +43,8 @@ class CustomUserAdmin(UserAdmin):
             "Permisos",
             {
                 "fields": (
-                    "is_staff",
                     "is_active",
+                    "is_staff",
                     "is_superuser",
                     "groups",
                     "user_permissions",

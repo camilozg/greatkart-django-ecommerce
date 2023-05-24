@@ -10,7 +10,7 @@ urlpatterns = [
     path('<slug:category_slug>/<slug:product_slug>/', views.product_detail, name='product_detail'),
     path('search/', views.search, name='search')
     ##################################################################################################################
-    # Ejemplo de las mismas url en CBV
+    # Ejemplo con las mismas url en CBV
     ##################################################################################################################
     # path('', views.StoreView.as_view(), name='all_products'),
     # path('category/<slug:category_slug>/', views.StoreView.as_view(), name='products_by_category'),

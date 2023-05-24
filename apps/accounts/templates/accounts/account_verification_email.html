@@ -1,0 +1,11 @@
+{# djlint:off #}
+{% autoescape off %}
+
+Hola {{ user.first_name }}!
+
+Activa tu cuenta de GreatKart a través del siguiente enlace:
+http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}
+
+Si no te has registrado en nuestra tienda virtual por favor ignora este mensaje.
+
+{% endautoescape %}
