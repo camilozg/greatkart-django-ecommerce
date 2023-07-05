@@ -51,7 +51,7 @@
                                                     <div class="input-group input-spinner">
                                                         <!-- Minus button -->
                                                         <div class="input-group-prepend">
-                                                            <form action="{% url 'cart:substract_cart' item.product.id item.id %}" method="POST">
+                                                            <form action="{% url 'cart:minus_cart' item.id %}" method="POST">
                                                                 {% csrf_token %}
                                                                 {% for variation in item.variations.all %}
                                                                     <input type="hidden" name={{ variation.category | lower }} value={{ variation.value | lower }}>
@@ -64,7 +64,7 @@
                                                         <input type="text" class="form-control"  value="{{ item.quantity }}">
                                                         <!--- Plus button -->
                                                         <div class="input-group-append">
-                                                            <form action="{% url 'cart:add_cart_plus_button' item.product.id item.id %}" method="POST">
+                                                            <form action="{% url 'cart:plus_cart' item.id %}" method="POST">
                                                                 {% csrf_token %}
                                                                 {% for variation in item.variations.all %}
                                                                     <input type="hidden" name={{ variation.category | lower }} value={{ variation.value | lower }}>
@@ -84,7 +84,7 @@
                                                 </div>
                                             </td>
                                             <td class="text-right">
-                                                <a href="{% url 'cart:remove_cart' item.product.id item.id %}" class="btn btn-danger">Quitar</a>
+                                                <a href="{% url 'cart:remove_cart' item.id %}" class="btn btn-danger">Quitar</a>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -125,7 +125,7 @@
                                 <p class="text-center mb-3">
                                     <img src="{% static 'images/misc/payments.png' %}" height="26">
                                 </p>
-                                <a href="./place-order.html" class="btn btn-primary btn-block">Pagar</a>
+                                <a href="{% url 'cart:checkout' %}" class="btn btn-primary btn-block">Pagar</a>
                                 <a href="{% url 'store:all_products' %}" class="btn btn-light btn-block">Seguir comprando</a>
                             </div>
                             <!-- card-body.// -->

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.store",
     "apps.cart",
+    "apps.orders",
 ]
 
 MIDDLEWARE = [
@@ -135,7 +136,7 @@ estáticos de esta ruta.
 """
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "collectstatic"
+STATIC_ROOT = BASE_DIR / "static_production"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
@@ -209,3 +210,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "camilozamora1@gmail.com"
 EMAIL_HOST_PASSWORD = "uuyddvjwidfbbjaz"  # Clave de aplicación generada por gmail
 EMAIL_USE_TLS = True
+
+# Permite abrir popups como el botón de pago de PayPal
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"

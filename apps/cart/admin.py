@@ -8,28 +8,29 @@ from .models import Cart, CartItem
 
 class CartAdmin(admin.ModelAdmin):
     list_display = (
-        'session_id',
-        'date_added',
+        "session_id",
+        "date_added",
     )
 
 
 class CartItemAdmin(admin.ModelAdmin):
     list_display = (
-        'cart',
-        'product',
-        'item_variations',
-        'quantity',
-        'is_active',
+        "user",
+        "cart",
+        "product",
+        "item_variations",
+        "quantity",
+        "is_active",
     )
 
     def item_variations(self, obj):
         return format_html_join(
-            '',
-            '{}: {}<br>',
-            [(vrt.get_category_display(), vrt.value) for vrt in obj.variations.all().order_by('created_date')],
+            "",
+            "{}: {}<br>",
+            [(vrt.get_category_display(), vrt.value) for vrt in obj.variations.all().order_by("created_date")],
         )
 
-    item_variations.short_description = 'variaciones'
+    item_variations.short_description = "variaciones"
 
 
 admin.site.register(Cart, CartAdmin)

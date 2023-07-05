@@ -31,13 +31,9 @@
                                     <div class="item-option-select">
                                         <h6>Color</h6>
                                         <select name="color" class="form-control" required>
-                                            <option value="" disabled selected>
-                                                Elige el color
-                                            </option>
+                                            <option disabled selected>Elige el color</option>
                                             {% for variation in product.variations.filter_by_color %}
-                                                <option value="{{ variation.value | lower }}">
-                                                    {{ variation.value | capfirst }}
-                                                </option>
+                                                <option value="{{ variation.value | lower }}">{{ variation.value | capfirst }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -47,13 +43,9 @@
                                     <div class="item-option-select">
                                         <h6>Talla</h6>
                                         <select name="size" class="form-control" required>
-                                            <option value="" disabled selected>
-                                                Elige la talla
-                                            </option>
+                                            <option disabled selected>Elige la talla</option>
                                             {% for variation in product.variations.filter_by_size %}
-                                                <option value="{{ variation.value | lower }}">
-                                                    {{ variation.value | capfirst }}
-                                                </option>
+                                                <option value="{{ variation.value | lower }}">{{ variation.value | capfirst }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -89,7 +81,8 @@
                     </header>
                     <article class="box mb-3">
                         <div class="icontext w-100">
-                            <img src="{% static 'images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
+                            <img src="{% static 'images/avatars/avatar1.jpg' %}"
+                                 class="img-xs icon rounded-circle">
                             <div class="text">
                                 <span class="date text-muted float-md-right">24.04.2020</span>
                                 <h6 class="mb-1">Mike John</h6>
