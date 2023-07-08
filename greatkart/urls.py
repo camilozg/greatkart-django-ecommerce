@@ -38,8 +38,8 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 """
-El include django.contrib.auth.urls agrega las siguientes rutas de autenticación por
-defecto. La ruta de signup debemos crearla nosotros mismos:
+django.contrib.auth.urls agrega las siguientes rutas de autenticación por defecto.
+La ruta de signup debemos crearla nosotros mismos:
 
     accounts/ login/ [name='login']
     accounts/ logout/ [name='logout']

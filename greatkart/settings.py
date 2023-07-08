@@ -20,7 +20,7 @@ from django.contrib.messages import constants as messages
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Agregar la ruta de apps a la lista de directorios donde Python busca los módulos
-sys.path.append(os.path.join(BASE_DIR, "apps"))
+# sys.path.append(os.path.join(BASE_DIR, "apps"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -44,13 +44,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "core",
-    "category",
-    "accounts",
-    "store",
-    "cart",
-    "orders",
-    "prueba",
+    "apps.core.apps.CoreConfig",
+    "apps.category",
+    "apps.accounts",
+    "apps.store",
+    "apps.cart",
+    "apps.orders",
+    "apps.prueba",
 ]
 
 MIDDLEWARE = [
@@ -68,7 +68,7 @@ ROOT_URLCONF = "greatkart.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "templates/"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -137,15 +137,15 @@ por ejemplo http://127.0.0.1:8000/static/images/banners/cover.jpg
 STATICFILES_DIRS: Rutas adicionales de archivos estáticos. Si se crea una carpeta
 con elementos estaticos afuera de las apps debemos especificar su ruta.
 
-STATIC_ROOT: Es donde se agrupan los archivos estáticos de las apps (app/static) y de los
+STATIC_ROOT: Es donde se agrupan los archivos estáticos de las apps (app/static) y los
 directorios STATICFILES_DIRS. Esto se realiza con el comando collectstatic y es importante
 para los despliegues a producción ya que cuando DEBUG = False solo se pueden leer archivos
 estáticos de esta ruta.
 """
 
-STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static_production"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static/"
+# STATICFILES_DIRS = [BASE_DIR / "greatkart/static/"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -158,7 +158,7 @@ AUTH_USER_MODEL = "accounts.User"
 
 # Media files
 
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media/"
 
 # Numbers configuration
@@ -219,6 +219,3 @@ EMAIL_USE_TLS = True
 
 # Permite abrir popups como el botón de pago de PayPal
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
-
-# sys.path.append(os.path.join(BASE_DIR, "apps"))  # at the bottom of the file
-# sys.path.append(BASE_DIR / "/apps")  # at the bottom of the file
