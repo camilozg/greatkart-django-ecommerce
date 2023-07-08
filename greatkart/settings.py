@@ -10,10 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
+import sys
 from pathlib import Path
+
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Agregar la ruta de apps a la lista de directorios donde Python busca los módulos
+sys.path.append(os.path.join(BASE_DIR, "apps"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,12 +44,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.core",
-    "apps.category",
-    "apps.accounts",
-    "apps.store",
-    "apps.cart",
-    "apps.orders",
+    "core",
+    "category",
+    "accounts",
+    "store",
+    "cart",
+    "orders",
+    "prueba",
 ]
 
 MIDDLEWARE = [
@@ -159,8 +167,6 @@ USE_THOUSAND_SEPARATOR = True
 
 # Django messages
 
-from django.contrib.messages import constants as messages
-
 MESSAGE_TAGS = {
     messages.ERROR: "alert-danger",
     messages.SUCCESS: "alert-success",
@@ -213,3 +219,6 @@ EMAIL_USE_TLS = True
 
 # Permite abrir popups como el botón de pago de PayPal
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+
+# sys.path.append(os.path.join(BASE_DIR, "apps"))  # at the bottom of the file
+# sys.path.append(BASE_DIR / "/apps")  # at the bottom of the file
