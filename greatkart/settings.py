@@ -211,8 +211,8 @@ DEBUG:
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "camilozamora1@gmail.com"
-EMAIL_HOST_PASSWORD = "uuyddvjwidfbbjaz"  # Clave de aplicación generada por gmail
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""  # Clave de aplicación generada por gmail
 EMAIL_USE_TLS = True
 
 # Permite abrir popups como el botón de pago de PayPal
